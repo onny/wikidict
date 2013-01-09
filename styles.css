@@ -3,7 +3,7 @@ body {
   text-align:center;
 }
 
-input.lang {width: 35px}
+input.lang {width: 50px}
 table{
   width: 100%;
   border: 1px solid #6d6d6d;
@@ -69,7 +69,7 @@ footer a{
 }
 #right {
   float:left;
-  width:300px;
+  width:450px;
   padding-top: 15px;
 }
 header {

@@ -87,7 +87,7 @@ $languageCodes = array(
  "hu" => "Hungarian",
  "hy" => "Armenian",
  "hz" => "Herero",
- "ia" => "Interlingua (International Auxiliary Language Association)",
+ "ia" => "Interlingua",
  "id" => "Indonesian",
  "ie" => "Interlingue",
  "ig" => "Igbo",
@@ -254,10 +254,33 @@ if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
       </div>
       <div id="right">
       <form class="form-inline">
-	  <input type="text" id="from" class="lang" value="<?=$from?>">
-	  <input type="text" id="to" class="lang" value="<?=$to?>">
-	  <input type="text" id="word" class="search-query" value="<?=$q?>">
-	  <button class="btn btn-primary">translate</button>
+From:
+<select name="from" tabindex="2">
+<?php
+foreach ($languageCodes as $key => $value)
+  if($key == $from) { 
+    echo "<option selected='selected' value='".$key."'>".$value." (".$key.")</option>";
+  } else {
+    echo "<option value='".$key."'>".$value." (".$key.")</option>";
+  }
+?>
+</select>
+to
+<select name="to" tabindex="2">
+<?php
+foreach ($languageCodes as $key => $value)
+  if($key == $to) { 
+    echo "<option selected='selected' value='".$key."'>".$value." (".$key.")</option>";
+  } else {
+    echo "<option value='".$key."'>".$value." (".$key.")</option>";
+  }
+?>
+</select>
+<br>
+	  <input type="text" value="<?=$q?>">
+	  <button>Translate</button>
+
+
       </form>
     </div>
   </header> 
