@@ -296,6 +296,6 @@ foreach ($languageCodes as $key => $value)
 
 <?php
 if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
-    echo "<script language=javascript>fernschreiben('". $_GET['q'] ."');</script>";
+    echo "<script language=javascript>fernschreiben('".$from."','".$to."','".$q."');</script>";
 }
 ?>

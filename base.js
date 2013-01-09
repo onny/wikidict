@@ -228,10 +228,19 @@ function show_result(data) {
     });
 }
 
-function fernschreiben() {
+function fernschreiben(from, to, word) {
+	if(typeof from == "undefined") {
+		var from = $('#from').val();
+	}
+	if(typeof to == "undefined") {
+		var to = $('#to').val();
+	}
+	if(typeof word == "undefined") {
+		var word = $('#word').val();
+	}
 	$('section > article').empty();
 	$('#result').show();
-	translate($('#from').val(), $('#to').val(), $('#word').val());
+	translate(from, to, word);
 }
 
 function translate(from, to, word) {
