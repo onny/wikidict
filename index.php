@@ -14,7 +14,6 @@
 #	- siehe beispiel, wie form inputs validiert werden können http://api.jquery.com/submit/
 #	- mutmaßlicher bug: wort 'double sharp' linkt nicht mehr richtig wegen leerzeichen
 #	- mobile ui
-#	- dropdown menu für sprachen (siehe wikidict.de)
 #	- suchen in beide richtungen
 #	- escape wrong input (security)
 #	- making a new search, rewriting url to set get params
@@ -241,6 +240,7 @@ if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
 	<script type='text/javascript' src='http://code.jquery.com/jquery-1.8.3.js'></script>
 	<script type='text/javascript' src='base.js'></script>
 	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link title="WikiDict.cc - Free and open online dictionary" type="application/opensearchdescription+xml" rel="search" href="opensearch.xml">
 	<title>WikiDict.cc - Free and open online dictionary</title>
 </head>
 <body>
@@ -255,7 +255,7 @@ if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
       <div id="right">
       <form class="form-inline">
 From:
-<select name="from" tabindex="2">
+<select name="from" id="from" tabindex="2">
 <?php
 foreach ($languageCodes as $key => $value)
   if($key == $from) { 
@@ -266,7 +266,7 @@ foreach ($languageCodes as $key => $value)
 ?>
 </select>
 to
-<select name="to" tabindex="2">
+<select name="to" id="to" tabindex="2">
 <?php
 foreach ($languageCodes as $key => $value)
   if($key == $to) { 
@@ -277,7 +277,7 @@ foreach ($languageCodes as $key => $value)
 ?>
 </select>
 <br>
-	  <input type="text" value="<?=$q?>">
+	  <input type="text" id="word" value="<?=$q?>">
 	  <button>Translate</button>
 
 
