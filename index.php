@@ -290,6 +290,6 @@ if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
 
 <?php
 if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
-    echo "<script language=javascript>translate('". $_GET['q'] ."');</script>";
+    echo "<script language=javascript>fernschreiben('". $_GET['q'] ."');</script>";
 }
 ?>
