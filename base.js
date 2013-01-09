@@ -229,6 +229,8 @@ function show_result(data) {
 }
 
 function translate(word) {
+  $('section > article').empty();
+  $('#result').show();
   if (typeof word == 'object') {
     var word = $('#word').val();
   } else {

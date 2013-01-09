@@ -18,6 +18,7 @@
 #	- suchen in beide richtungen
 #	- escape wrong input (security)
 #	- making a new search, rewriting url to set get params
+#	- beispiel, mit einer api query alles wichtige fetchen http://de.wiktionary.org/w/api.php?action=parse&format=json&prop=templates|iwlinks&page=Sonnenschein
 -->
 
 <?php
@@ -248,7 +249,7 @@ if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
 
   <header>
   <div id="left">
-    <h1><a href=/wikidict>WikiDict.cc</a></h1>
+    <h1><a href=#home onClick="$('section > article').empty(); $('#result').show()">WikiDict.cc</a></h1>
     <h2>Free and open online dictionary based on <a target=new href=http://wiktionary.org>Wiktionary.org</a></h2>
       </div>
       <div id="right">
@@ -262,6 +263,8 @@ if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
   </header> 
 
   <section>
+    <article>
+    </article>
     <table id="result">
       <thead>
 	<tr class="title"><th width=50%>Sprache 1</th><th>Sprache 2</th></tr>
@@ -276,9 +279,9 @@ if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
 <a href="http://flattr.com/thing/1095199/WikiDict-Free-and-open-online-dictionary" target="_blank">
   <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
 </div>
-    <a href="#about" onClick="$('section').load('about.html')">About</a>
-    <a href="#tools" onClick="$('section').load('tools.html')">Tools</a>
-    <a href="#imprint" onClick="$('section').load('imprint.html')">Imprint</a>
+    <a href="#about" onClick="$('section > article').load('about.html'); $('#result').hide()">About</a>
+    <a href="#tools" onClick="$('section > article').load('tools.html'); $('#result').hide()">Tools</a>
+    <a href="#imprint" onClick="$('section > article').load('imprint.html'); $('#result').hide()">Imprint</a>
   </footer>
 
 </div>
