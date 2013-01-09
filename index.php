@@ -1,25 +1,3 @@
-<!-- # TODO:
-#	- Firefox/Chrome Such-Plugin
-#	- In der Ergebnistabelle, Vokabeln ergänzen mit Angaben (f/m, plural/singular)
-#	- Tippfehler erkennen und Korrektur vorschlagen
-#	- Dict.cc fallback
-#	- Vokabeln speichern / Liste anlegen
-#	- Eintrag nicht gefunden -> Link zum Anlegen der Seite
-		- oder: seite wurde gefunden, aber es gibt noch keine übersetzungsangaben
-#	- Pronunciations http://en.wiktionary.org/wiki/sunshine
-#	- offer daily dict snapshots as torrent in various open dict formats (there are some dumping projects on github)
-#	- livesearch
-#	- ignore case per default
-#	- fade effect
-#	- siehe beispiel, wie form inputs validiert werden können http://api.jquery.com/submit/
-#	- mutmaßlicher bug: wort 'double sharp' linkt nicht mehr richtig wegen leerzeichen
-#	- mobile ui
-#	- suchen in beide richtungen
-#	- escape wrong input (security)
-#	- making a new search, rewriting url to set get params
-#	- beispiel, mit einer api query alles wichtige fetchen http://de.wiktionary.org/w/api.php?action=parse&format=json&prop=templates|iwlinks&page=Sonnenschein
--->
-
 <?php
 $languageCodes = array(
  "aa" => "Afar",
@@ -241,6 +219,11 @@ if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
 	<script type='text/javascript' src='base.js'></script>
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<link title="WikiDict.cc - Free and open online dictionary" type="application/opensearchdescription+xml" rel="search" href="opensearch.xml">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="copyright" href="//creativecommons.org/licenses/by-sa/3.0/">
+	<link rel="copyright" href="//www.gnu.org/copyleft/fdl.html">
+	<link rel="license" href="//creativecommons.org/licenses/by-sa/3.0/">
+	<link rel="license" href="//www.gnu.org/copyleft/fdl.html">
 	<title>WikiDict.cc - Free and open online dictionary</title>
 </head>
 <body>

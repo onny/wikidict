@@ -4,5 +4,5 @@
 	<Description>WikiDict.cc - Free and open online dictionary</Description>
 	<InputEncoding>UTF-8</InputEncoding>
 	<Image height="16" width="16" type="image/x-icon">http://www.wikidict.cc/favicon.ico</Image>
-	<Url type="text/html" template="http://onny.project-insanity.org/wikidict/?from=en&to=de&q={searchTerms}"/>
+	<Url type="text/html" template="http://onny.project-insanity.org/wikidict/?q={searchTerms}"/>
 </OpenSearchDescription>
