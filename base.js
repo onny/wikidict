@@ -228,22 +228,21 @@ function show_result(data) {
     });
 }
 
-function translate(word) {
-  $('section > article').empty();
-  $('#result').show();
-  if (typeof word == 'object') {
-    var word = $('#word').val();
-  } else {
-    $("#word").text(word);
-  }
+function fernschreiben() {
+	$('section > article').empty();
+	$('#result').show();
+	translate($('#from').val(), $('#to').val(), $('#word').val());
+}
+
+function translate(from, to, word) {
     $.ajax({
-        url: 'http://' + $('#from').val() + '.wiktionary.org/w/api.php',
+        url: 'http://' + from + '.wiktionary.org/w/api.php',
         data: {
             action: 'query',
             prop: 'iwlinks',
             format: 'json',
             iwlimit: 30,
-            iwprefix: $('#to').val(),
+            iwprefix: to,
             titles: word
         },
         dataType: 'jsonp',
@@ -255,6 +254,9 @@ function translate(word) {
 
 
 $(window).load(function(){
-  $('form').submit(translate);
+  $('form').submit(function() {
+				fernschreiben(); 
+				return false;
+		   });
   $('#word').focus();
 });
