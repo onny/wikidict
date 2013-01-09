@@ -241,6 +241,11 @@ if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
 	<script type='text/javascript' src='base.js'></script>
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<link title="WikiDict.cc - Free and open online dictionary" type="application/opensearchdescription+xml" rel="search" href="opensearch.xml">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="copyright" href="//creativecommons.org/licenses/by-sa/3.0/">
+	<link rel="copyright" href="//www.gnu.org/copyleft/fdl.html">
+	<link rel="license" href="//creativecommons.org/licenses/by-sa/3.0/">
+	<link rel="license" href="//www.gnu.org/copyleft/fdl.html">
 	<title>WikiDict.cc - Free and open online dictionary</title>
 </head>
 <body>
