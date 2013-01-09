@@ -282,8 +282,8 @@ foreach ($languageCodes as $key => $value)
 
   <footer>
 <div style="float:left;">
-<a href="http://flattr.com/thing/1095199/WikiDict-Free-and-open-online-dictionary" target="_blank">
-  <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
+<a href="http://flattr.com/thing/1096017/WikiDict-cc-The-free-and-open-online-dictionary" target="_blank">
+<img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
 </div>
     <a href="#about" onClick="$('section > article').load('about.html'); $('#result').hide()">About</a>
     <a href="#tools" onClick="$('section > article').load('tools.html'); $('#result').hide()">Tools</a>
