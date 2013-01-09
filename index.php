@@ -18,13 +18,6 @@
 #	- suchen in beide richtungen
 #	- escape wrong input (security)
 #	- making a new search, rewriting url to set get params
-#	- jusing css instead of js for highlighting rows
-
-# ABOUT:
-#	- http://www.apertium.org/ Ist frei, hat dics, lässt sich aber nicht benutzerfreundlich im Wiki-sinne erweitern
-
-# Reference:
-	- http://en.wiktionary.org/w/api.php
 -->
 
 <?php
