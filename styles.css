@@ -10,6 +10,7 @@ table{
   border-radius: 5px;
   margin: auto;
   margin-top: 15px;
+  background: #D8D8D8;
 }
 th{
   background: -moz-linear-gradient(top, #5A7CFE, blue);
@@ -27,6 +28,9 @@ td a{
   color: black;
 }
 
+tr:hover td{
+  background: white;
+}
 tr.columns th{
   background: -moz-linear-gradient(top, #c3c3c3, #a5a5a5);
   background: -webkit-gradient(linear, left top, left bottom, from(#c3c3c3), to(#a5a5a5));
@@ -39,7 +43,7 @@ tr.columns th{
 
 footer {
   margin: 20px 20px 0 0px;
-  padding-top: 4px;
+  padding-top: 6px;
   width: 100%;
   border-top: 1px solid black;
   text-align: right;
@@ -79,9 +83,16 @@ header h1{
   margin: 0px;
   font-size: 50px;
 }
+header h1 a{
+  text-decoration: none;
+  color: black;
+}
 header h2{
   margin-top: 0px;
   font-size:10px;
+  color: black;
+}
+header h2 a{
   text-decoration: none;
   color: black;
 }

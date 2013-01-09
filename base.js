@@ -217,7 +217,7 @@ function show_result(data) {
     $("#result thead").append('<tr><th width=50%>'+ iso639[$('#from').val()] +'</th><th>'+ iso639[$('#to').val()] +'</th></tr>');
     $.each(data.query.pages, function(page_id, page) {
         if (page.iwlinks === undefined) {
-            $("#result2 ul").append('no results');
+	    $('#result tbody').append('<tr><td colspan="2" align="center">Sorry, the page {inser searchterm here} exists, but no translation in your choosen language was given. If you want to add a translation, simply click <a target=new href=#>here</a>!</td></tr>');
             return false; // break
         }
         $.each(page.iwlinks, function(i, el) {
@@ -250,16 +250,9 @@ function translate(word) {
     return false;
 }
 
-function load_about() {
-  $('section').load('about.html');
-}
+
 
 $(window).load(function(){
-$('form').submit(translate);
-$('#word').focus();
-$('#about').onclick(function(){
-  alert('test');
-  return true;
-});
-
+  $('form').submit(translate);
+  $('#word').focus();
 });

@@ -5,20 +5,20 @@
 #	- Dict.cc fallback
 #	- Vokabeln speichern / Liste anlegen
 #	- Eintrag nicht gefunden -> Link zum Anlegen der Seite
-#	- About-Seite: Warum wurde das Projekt gestartet 
+		- oder: seite wurde gefunden, aber es gibt noch keine übersetzungsangaben
 #	- Pronunciations http://en.wiktionary.org/wiki/sunshine
 #	- offer daily dict snapshots as torrent in various open dict formats (there are some dumping projects on github)
 #	- livesearch
-#	- ergebnisse verlinken mit wiktionary
-#	- error: word not found
 #	- ignore case per default
 #	- fade effect
 #	- siehe beispiel, wie form inputs validiert werden können http://api.jquery.com/submit/
 #	- mutmaßlicher bug: wort 'double sharp' linkt nicht mehr richtig wegen leerzeichen
 #	- mobile ui
-#	- dropdown menu für sprachen
+#	- dropdown menu für sprachen (siehe wikidict.de)
 #	- suchen in beide richtungen
 #	- escape wrong input (security)
+#	- making a new search, rewriting url to set get params
+#	- jusing css instead of js for highlighting rows
 
 # ABOUT:
 #	- http://www.apertium.org/ Ist frei, hat dics, lässt sich aber nicht benutzerfreundlich im Wiki-sinne erweitern
@@ -229,6 +229,15 @@ if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
 		// to the default 
 		$to = "de";
 	}
+	if(isset($_GET['q'])){
+	  $q = $_GET['q'];
+	} else {
+	  $q = "";
+	}
+}	else {
+	  $from = "en";
+	  $to = "de";
+	  $q = "";
 }
 ?>
 
@@ -246,14 +255,14 @@ if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
 
   <header>
   <div id="left">
-    <h1>WikiDict.cc</h1>
+    <h1><a href=/wikidict>WikiDict.cc</a></h1>
     <h2>Free and open online dictionary based on <a target=new href=http://wiktionary.org>Wiktionary.org</a></h2>
       </div>
       <div id="right">
       <form class="form-inline">
 	  <input type="text" id="from" class="lang" value="<?=$from?>">
 	  <input type="text" id="to" class="lang" value="<?=$to?>">
-	  <input type="text" id="word" class="search-query" value="<?php echo $_GET['q'] ?>">
+	  <input type="text" id="word" class="search-query" value="<?=$q?>">
 	  <button class="btn btn-primary">translate</button>
       </form>
     </div>
@@ -270,6 +279,10 @@ if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
   </section>
 
   <footer>
+<div style="float:left;">
+<a href="http://flattr.com/thing/1095199/WikiDict-Free-and-open-online-dictionary" target="_blank">
+  <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
+</div>
     <a href="#about" onClick="$('section').load('about.html')">About</a>
     <a href="#tools" onClick="$('section').load('tools.html')">Tools</a>
     <a href="#imprint" onClick="$('section').load('imprint.html')">Imprint</a>
