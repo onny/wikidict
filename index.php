@@ -14,6 +14,10 @@
 #	- ignore case per default
 #	- fade effect
 #	- siehe beispiel, wie form inputs validiert werden können http://api.jquery.com/submit/
+#	- mutmaßlicher bug: wort 'double sharp' linkt nicht mehr richtig wegen leerzeichen
+#	- mobile ui
+#	- dropdown menu für sprachen
+#	- suchen in beide richtungen
 
 # ABOUT:
 #	- http://www.apertium.org/ Ist frei, hat dics, lässt sich aber nicht benutzerfreundlich im Wiki-sinne erweitern
@@ -22,8 +26,15 @@
 	- http://en.wiktionary.org/w/api.php
 -->
 
+<?php
+if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
+  echo "Wenn from gültig und Teil des ISO-Arrays, dann der Variable from_lang zuweisen, die dann in das Input-Feld geschrieben wird. Wenn nicht, dann Standardval en in die Var schreiben";
+}
+?>
+
 <html>
 <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<script type='text/javascript' src='http://code.jquery.com/jquery-1.8.3.js'></script>
 	<script type='text/javascript' src='base.js'></script>
 	<link rel="stylesheet" type="text/css" href="styles.css">
@@ -59,9 +70,9 @@
   </section>
 
   <footer>
-    <a href="#about">About</a>
-    <a href="#tools">Tools</a>
-    <a href="#imprint">Imprint</a>
+    <a href="#about" onClick="$('section').load('about.html')">About</a>
+    <a href="#tools" onClick="$('section').load('tools.html')">Tools</a>
+    <a href="#imprint" onClick="$('section').load('imprint.html')">Imprint</a>
   </footer>
 
 </div>
@@ -70,7 +81,6 @@
 
 <?php
 if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
-    echo "test";
-    echo "<script language=javascript>translate('daylight');</script>";
+    echo "<script language=javascript>translate('". $_GET['q'] ."');</script>";
 }
 ?>

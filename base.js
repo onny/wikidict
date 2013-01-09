@@ -250,7 +250,16 @@ function translate(word) {
     return false;
 }
 
+function load_about() {
+  $('section').load('about.html');
+}
+
 $(window).load(function(){
 $('form').submit(translate);
 $('#word').focus();
+$('#about').onclick(function(){
+  alert('test');
+  return true;
+});
+
 });
