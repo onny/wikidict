@@ -228,44 +228,47 @@ function show_result(data) {
     });
 }
 
-function fernschreiben(from, to, word) {
-	if(typeof from == "undefined") {
-		var from = $('#from').val();
-	}
-	if(typeof to == "undefined") {
-		var to = $('#to').val();
-	}
-	if(typeof word == "undefined") {
-		var word = $('#word').val();
-	}
-	$('section > article').empty();
-	$('#result').show();
-	translate(from, to, word);
+function setHistory(from, to, word) {
+	var stateObj = {from: from, to: to, word: word };
+	window.document.title = "WikiDict.cc - " + word;	
+	history.pushState(stateObj, "WikiDict.cc - " + word, "?from="+ from + "&to=" + to + "&q=" + word);
 }
 
 function translate(from, to, word) {
-    $.ajax({
-        url: 'http://' + from + '.wiktionary.org/w/api.php',
-        data: {
-            action: 'query',
-            prop: 'iwlinks',
-            format: 'json',
-            iwlimit: 30,
-            iwprefix: to,
-            titles: word
-        },
-        dataType: 'jsonp',
-        success: show_result
-    });
-    return false;
+	$('section > article').empty();
+	$('#result').show();
+	$('#word').val(word);
+	$.ajax({
+		url: 'http://' + from + '.wiktionary.org/w/api.php',
+		data: {
+			action: 'query',
+			prop: 'iwlinks',
+			format: 'json',
+			iwlimit: 30,
+			iwprefix: to,
+			titles: word
+		},
+		dataType: 'jsonp',
+	        success: show_result
+    	});
+    	return false;
 }
 
 
 
 $(window).load(function(){
-  $('form').submit(function() {
-				fernschreiben(); 
-				return false;
-		   });
-  $('#word').focus();
+  	$('form').submit(function() {
+		var from = $('#from').val();
+		var to = $('#to').val();
+		var word = $('#word').val();
+
+		setHistory(from, to, word);
+		translate(from, to, word);
+		return false;
+	});
+  	$('#word').focus();
 });
+
+window.onpopstate = function(event){
+	translate(event.state['from'],event.state['to'],event.state['word']);
+};
