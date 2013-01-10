@@ -266,6 +266,23 @@ $(window).load(function(){
 		return false;
 	});
   	$('#word').focus();
+	$("#word").autocomplete({
+	    source: function(request, response) {
+		console.log(request.term);
+		$.ajax({
+		    url: "http://"+$('#from').val()+".wiktionary.org/w/api.php",
+		    dataType: "jsonp",
+		    data: {
+			'action': "opensearch",
+			'format': "json",
+			'search': request.term
+		    },
+		    success: function(data) {
+			response(data[1]);
+		    }
+		});
+	    }
+});
 });
 
 window.onpopstate = function(event) {

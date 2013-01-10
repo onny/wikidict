@@ -218,6 +218,8 @@ if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<script type='text/javascript' src='http://code.jquery.com/jquery-1.8.3.js'></script>
 	<script type='text/javascript' src='base.js'></script>
+	<script type='text/javascript' src="jquery-ui-1.9.2.custom.js"></script>
+	<link rel="stylesheet" type="text/css" href="jquery-ui-1.9.2.custom.css">
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<link title="WikiDict.cc - Free and open online dictionary" type="application/opensearchdescription+xml" rel="search" href="opensearch.xml">
 	<link rel="shortcut icon" href="favicon.ico">
