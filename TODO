@@ -1,22 +1,20 @@
-	- Firefox/Chrome Such-Plugin
-	- In der Ergebnistabelle, Vokabeln ergänzen mit Angaben (f/m, plural/singular)
-	- Tippfehler erkennen und Korrektur vorschlagen
-	- Dict.cc fallback
-	- Vokabeln speichern / Liste anlegen
-	- Eintrag nicht gefunden -> Link zum Anlegen der Seite
-		- oder: seite wurde gefunden, aber es gibt noch keine übersetzungsangaben
-	- Pronunciations http://en.wiktionary.org/wiki/sunshine
-	- offer daily dict snapshots as torrent in various open dict formats (there are some dumping projects on github)
-	- livesearch
-	- ignore case per default
-	- fade effect
-	- siehe beispiel, wie form inputs validiert werden können http://api.jquery.com/submit/
-	- mutmaßlicher bug: wort 'double sharp' linkt nicht mehr richtig wegen leerzeichen
-	- mobile ui
-	- suchen in beide richtungen
-	- escape wrong input (security)
-	- making a new search, rewriting url to set get params
-	- beispiel, mit einer api query alles wichtige fetchen http://de.wiktionary.org/w/api.php?action=parse&format=json&prop=templates|iwlinks&page=Sonnenschein
-	- onpopstate: lang selector setzen, bevor translate ausgeführt wird
-	- #word: replace spaces with _
-	- rewrite #home/#about/#tools/#imprent in url, use modrewrite for index.php?p=about/...
+- Firefox/Chrome Such-Plugin
+- In der Ergebnistabelle, Vokabeln ergänzen mit Angaben (f/m, plural/singular)
+- Dict.cc fallback
+- Vokabeln speichern / Liste anlegen
+- Eintrag nicht gefunden -> Link zum Anlegen der Seite
+	- oder: seite wurde gefunden, aber es gibt noch keine übersetzungsangaben
+- Pronunciations http://en.wiktionary.org/wiki/sunshine
+- offer daily dict snapshots as torrent in various open dict formats (there are some dumping projects on github)
+- livesearch
+- ignore case per default
+- fade effect
+- siehe beispiel, wie form inputs validiert werden können http://api.jquery.com/submit/
+- mutmaßlicher bug: wort 'double sharp' linkt nicht mehr richtig wegen leerzeichen
+- suchen in beide richtungen
+- escape wrong input (security)
+- making a new search, rewriting url to set get params
+- beispiel, mit einer api query alles wichtige fetchen http://de.wiktionary.org/w/api.php?action=parse&format=json&prop=templates|iwlinks&page=Sonnenschein
+- #word: replace spaces with _
+- rewrite #home/#about/#tools/#imprent in url, use modrewrite for index.php?p=about/...
+- autocomplete onselect does not get word-property correctly and does not sethidstory etc.

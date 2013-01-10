@@ -282,7 +282,13 @@ $(window).load(function(){
 		    }
 		});
 	    }
-});
+	});
+	$( "#word" ).on( "autocompleteselect", function( event, ui ) {
+		var from = $('#from').val();
+		var to = $('#to').val();
+		var word = $('#word').val();
+		translate(from, to, word);
+	});
 });
 
 window.onpopstate = function(event) {
