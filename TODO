@@ -19,3 +19,4 @@
 	- beispiel, mit einer api query alles wichtige fetchen http://de.wiktionary.org/w/api.php?action=parse&format=json&prop=templates|iwlinks&page=Sonnenschein
 	- onpopstate: lang selector setzen, bevor translate ausgeführt wird
 	- #word: replace spaces with _
+	- rewrite #home/#about/#tools/#imprent in url, use modrewrite for index.php?p=about/...
