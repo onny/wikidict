@@ -237,7 +237,6 @@ function setHistory(from, to, word) {
 function translate(from, to, word) {
 	$('section > article').empty();
 	$('#result').show();
-	$('#word').val(word);
 	$.ajax({
 		url: 'http://' + from + '.wiktionary.org/w/api.php',
 		data: {
@@ -269,6 +268,12 @@ $(window).load(function(){
   	$('#word').focus();
 });
 
-window.onpopstate = function(event){
-	translate(event.state['from'],event.state['to'],event.state['word']);
+window.onpopstate = function(event) {
+	var from = event.state['from'];
+	var to = event.state['to'];
+	var word = event.state['word'];
+	$('#word').val(word);
+	window.document.getElementById('from').value = from;
+	window.document.getElementById('to').value = to;
+	translate(from, to, word);
 };
