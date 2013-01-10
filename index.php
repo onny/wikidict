@@ -237,9 +237,9 @@ if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
     <h2>Free and open online dictionary based on <a target=new href=http://wiktionary.org>Wiktionary.org</a></h2>
       </div>
       <div id="right">
-      <form class="form-inline">
+      <form id="form" class="form-inline">
 From:
-<select name="from" id="from" tabindex="2">
+<select onchange="$('form').submit()" name="from" id="from" tabindex="2">
 <?php
 foreach ($languageCodes as $key => $value)
   if($key == $from) { 
@@ -250,7 +250,7 @@ foreach ($languageCodes as $key => $value)
 ?>
 </select>
 to
-<select name="to" id="to" tabindex="2">
+<select onchange="$('form').submit()" name="to" id="to" tabindex="2">
 <?php
 foreach ($languageCodes as $key => $value)
   if($key == $to) { 
