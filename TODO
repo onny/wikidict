@@ -2,8 +2,6 @@
 - In der Ergebnistabelle, Vokabeln ergänzen mit Angaben (f/m, plural/singular)
 - Dict.cc fallback
 - Vokabeln speichern / Liste anlegen
-- Eintrag nicht gefunden -> Link zum Anlegen der Seite
-	- oder: seite wurde gefunden, aber es gibt noch keine übersetzungsangaben
 - Pronunciations http://en.wiktionary.org/wiki/sunshine
 - offer daily dict snapshots as torrent in various open dict formats (there are some dumping projects on github)
 - livesearch
