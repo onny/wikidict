@@ -215,15 +215,17 @@ function show_result(data) {
     $("#result tbody > tr").remove();
     $("#result thead > tr").remove();
     $("#result thead").append('<tr><th width=50%>'+ iso639[$('#from').val()] +'</th><th>'+ iso639[$('#to').val()] +'</th></tr>');
-    $.each(data.query.pages, function(page_id, page) {
-        if (page.iwlinks === undefined) {
+    $.each(data, function(parse, content) {
+        if (typeof content == 'string') {
 	    $('#result tbody').append('<tr><td colspan="2" align="center">Sorry, the page {inser searchterm here} exists, but no translation in your choosen language was given. If you want to add a translation, simply click <a target=new href=#>here</a>!</td></tr>');
             return false; // break
         }
-        $.each(page.iwlinks, function(i, el) {
-            var trans = el['*'];
-            trans = trans.replace('Special:Search/', '').replace('_', ' ');
-	    $('#result tbody').append('<tr><td><a target=new href=http://'+$('#from').val()+'.wiktionary.org/wiki/'+ $('#word').val() +'>' + $('#word').val() +'</a></td><td><a target=new href=http://'+$('#to').val()+'.wiktionary.org/wiki/'+ trans +'>' + trans + '</a> <font color=blue>' + get_attributes(trans) + '</font></td></tr>');
+        $.each(content.iwlinks, function(i, el) {
+	    if (el['prefix'] == $('#to').val()) {
+	      var trans = el['*'];
+	      trans = trans.replace($('#to').val()+":", '').replace('_', ' ');
+	      $('#result tbody').append('<tr><td><a target=new href="http://'+$('#from').val()+'.wiktionary.org/wiki/'+ $('#word').val().replace(' ','_') +'">' + $('#word').val() +'</a></td><td><a target=new href="http://'+$('#to').val()+'.wiktionary.org/wiki/'+ trans.replace(' ','_') +'">' + trans + '</a> <font color=blue>[-]</font></td></tr>');
+	    }
         });
     });
 }
@@ -240,12 +242,12 @@ function translate(from, to, word) {
 	$.ajax({
 		url: 'http://' + from + '.wiktionary.org/w/api.php',
 		data: {
-			action: 'query',
-			prop: 'iwlinks',
+			action: 'parse',
+			prop: 'templates|iwlinks',
 			format: 'json',
-			iwlimit: 30,
-			iwprefix: to,
-			titles: word
+			//iwlimit: 30,
+			//iwprefix: to,
+			page: word
 		},
 		dataType: 'jsonp',
 	        success: show_result
