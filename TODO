@@ -18,3 +18,9 @@
 - #word: replace spaces with _
 - rewrite #home/#about/#tools/#imprent in url, use modrewrite for index.php?p=about/...
 - autocomplete onselect does not get word-property correctly and does not sethidstory etc.
+- parser code, example (there are more on GitHub): http://code.google.com/p/jwiktionarytranslationparser/
+- the translation tables of wiktionary also refers to semantics:
+	- {{trans-top|to change the form or structure of}} (translation entry for 'to alter')
+	- there may exist more than one translation for the same vocabulary with different meanings
+	- one could append the semantics in square brackets after the word in the translation table
+- sort the content of the page into directories: js, images, css
