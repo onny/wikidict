@@ -216,17 +216,22 @@ function show_result(data) {
     $("#result thead > tr").remove();
     $("#result thead").append('<tr><th width=50%>'+ iso639[$('#from').val()] +'</th><th>'+ iso639[$('#to').val()] +'</th></tr>');
     $.each(data, function(parse, content) {
-        if (typeof content == 'string') {
-	    $('#result tbody').append('<tr><td colspan="2" align="center">Sorry, the page {inser searchterm here} exists, but no translation in your choosen language was given. If you want to add a translation, simply click <a target=new href=#>here</a>!</td></tr>');
-            return false; // break
-        }
-        $.each(content.iwlinks, function(i, el) {
-	    if (el['prefix'] == $('#to').val()) {
+      if (parse == 'error') { // response is an error, e.g. page does not exist
+	  $('#result tbody').append('<tr><td colspan="2" align="center">Sorry, the page <b><a target=new href="http://'+$('#from').val()+'.wiktionary.org/wiki/'+ $('#word').val().replace(' ','_') +'">' + $('#word').val() +'</b></a> does not exists in the Wiktionary. If you want to create it, start here!</td></tr>');
+	  return false; // break
+      }
+      if (parse == 'parse') { // valid page, continue
+	$.each(content.iwlinks, function(i, el) {
+	    if (el['prefix'] == $('#to').val()) { // there's an entry with our requested langcode in the translation table
 	      var trans = el['*'];
 	      trans = trans.replace($('#to').val()+":", '').replace('_', ' ');
 	      $('#result tbody').append('<tr><td><a target=new href="http://'+$('#from').val()+'.wiktionary.org/wiki/'+ $('#word').val().replace(' ','_') +'">' + $('#word').val() +'</a></td><td><a target=new href="http://'+$('#to').val()+'.wiktionary.org/wiki/'+ trans.replace(' ','_') +'">' + trans + '</a> <font color=blue>[-]</font></td></tr>');
+	    } else { // page exists, but not including our requested language
+	      $('#result tbody').append('<tr><td colspan="2" align="center">Sorry, the page <b><a target=new href="http://'+$('#from').val()+'.wiktionary.org/wiki/'+ $('#word').val().replace(' ','_') +'">' + $('#word').val() +'</b></a> exists, but no translation in your choosen language was given. If you want to add a translation, simply click <a target=new href=#>here</a>!</td></tr>');
+	      return false;
 	    }
-        });
+	});
+      }
     });
 }
 
