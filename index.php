@@ -235,7 +235,7 @@ if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
 
   <header>
   <div id="left">
-    <h1><a href=#home onClick="$('section > article').empty(); $('#result').show()">WikiDict.cc</a></h1>
+    <h1><a href="javascript:void(0);">WikiDict.cc</a></h1>
     <h2>Free and open online dictionary based on <a target=new href=http://wiktionary.org>Wiktionary.org</a></h2>
       </div>
       <div id="right">
@@ -288,9 +288,9 @@ foreach ($languageCodes as $key => $value)
 <a href="http://flattr.com/thing/1096017/WikiDict-cc-The-free-and-open-online-dictionary" target="_blank">
 <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
 </div>
-    <a href="#about" onClick="$('section > article').load('about.html'); $('#result').hide()">About</a>
-    <a href="#tools" onClick="$('section > article').load('tools.html'); $('#result').hide()">Tools</a>
-    <a href="#imprint" onClick="$('section > article').load('imprint.html'); $('#result').hide()">Imprint</a>
+    <a href="javascript:showArticle('about');">About</a>
+    <a href="javascript:showArticle('tools');">Tools</a>
+    <a href="javascript:showArticle('imprint')">Imprint</a>
   </footer>
 
 </div>

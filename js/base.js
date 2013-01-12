@@ -235,10 +235,10 @@ function show_result(data) {
     });
 }
 
-function setHistory(from, to, word) {
+function setSearchHistory(from, to, word) {
 	var stateObj = {from: from, to: to, word: word };
-	window.document.title = "WikiDict.cc - " + word;	
-	history.pushState(stateObj, "WikiDict.cc - " + word, "?from="+ from + "&to=" + to + "&q=" + word);
+	window.document.title = "WikiDict.cc - Search: " + word;	
+	history.pushState(stateObj, "WikiDict.cc - Search: " + word, "/?from="+ from + "&to=" + to + "&q=" + word);
 }
 
 function translate(from, to, word) {
@@ -260,22 +260,30 @@ function translate(from, to, word) {
     	return false;
 }
 
+function showArticle(page) {
+	$('#result').hide();
+	
+	window.document.title = "WikiDict.cc - " + page;	
+	history.pushState({page: page}, "WikiDict.cc - " + page, page);
+	
+	$('section > article').load(page + ".html");
+}
 
 
 $(window).load(function(){
   	$('form').submit(function() {
+		$( "#word" ).autocomplete( "close" ); //auto-completion fenster schließen
 		var from = $('#from').val();
 		var to = $('#to').val();
 		var word = $('#word').val();
 
-		setHistory(from, to, word);
+		setSearchHistory(from, to, word);
 		translate(from, to, word);
 		return false;
 	});
   	$('#word').focus();
 	$("#word").autocomplete({
 	    source: function(request, response) {
-		console.log(request.term);
 		$.ajax({
 		    url: "http://"+$('#from').val()+".wiktionary.org/w/api.php",
 		    dataType: "jsonp",
@@ -291,19 +299,27 @@ $(window).load(function(){
 	    }
 	});
 	$( "#word" ).on( "autocompleteselect", function( event, ui ) {
-		var from = $('#from').val();
-		var to = $('#to').val();
-		var word = $('#word').val();
-		translate(from, to, word);
+		$('#word').val(ui.item['value']); //insert the selected value into the field because of dependencies
+		$('form').submit();
 	});
 });
 
 window.onpopstate = function(event) {
-	var from = event.state['from'];
-	var to = event.state['to'];
-	var word = event.state['word'];
-	$('#word').val(word);
-	window.document.getElementById('from').value = from;
-	window.document.getElementById('to').value = to;
-	translate(from, to, word);
+	if(event.state != undefined) {
+		if(event.state['page'] != undefined) {
+			$('#result').hide();
+			$('section > article').load(event.state['page'] + ".html");
+		} else {
+			var from = event.state['from'];
+			var to = event.state['to'];
+			var word = event.state['word'];
+			$('#word').val(word);
+			window.document.getElementById('from').value = from;
+			window.document.getElementById('to').value = to;
+			translate(from, to, word);
+		}
+	} else {
+			$('section > article').hide();
+			$('#result').show();
+	}
 };
