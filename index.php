@@ -186,24 +186,31 @@ $languageCodes = array(
   "za" => "Zhuang",
   "zu" => "Zulu"
 );
-
+if(isset($_GET['from'])) {
 	if(isset($languageCodes[$_GET['from']])){
 		$from = $_GET['from'];
-	} else {
-		// passed language code is not correct, lets fallback
-		// to the default 
-		$from = "en";
 	}
+} else {
+	// passed language code is not correct, lets fallback
+	// to the default 
+	$from = "en";
+}
+
+if(isset($_GET['to'])) {
 	if(isset($languageCodes[$_GET['to']])){
 		$to = $_GET['to'];
-	} else {
-		// passed language code is not correct, lets fallback
-		// to the default 
-		$to = "de";
 	}
-	if(isset($_GET['q'])){
-	  $q = $_GET['q'];
-	} 
+} else {
+	// passed language code is not correct, lets fallback
+	// to the default 
+	$to = "de";
+}
+
+if(isset($_GET['q'])){
+	$q = $_GET['q'];
+} else {
+	$q = "";
+}
 ?>
 <html>
 <head>
