@@ -299,6 +299,6 @@ foreach ($languageCodes as $key => $value)
 
 <?php
 if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
-    echo "<script language=javascript>setHistory('".$from."','".$to."','".$q."'); translate('".$from."','".$to."','".$q."');</script>";
+    echo "<script language=javascript>setSearchHistory('".$from."','".$to."','".$q."'); translate('".$from."','".$to."','".$q."');</script>";
 }
 ?>
