@@ -212,7 +212,14 @@ $languageCodes = array(
 	<script type='text/javascript' src='js/base.js'></script>
 	<script type='text/javascript' src="js/jquery-ui-1.9.2.custom.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.2.custom.css">
-	<link rel="stylesheet" type="text/css" href="css/styles.css">
+
+	<meta name="HandheldFriendly" content="true" />
+	<meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" />
+	<link rel="stylesheet" media="handheld" href="css/style-mobile.css">
+	<link rel="stylesheet" media="screen and (max-width: 800px)" href="css/style-mobile.css">
+	<link rel="stylesheet" media="screen and (min-width: 801px)" href="css/styles.css">
+	<!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="css/styles.css"><![endif]--> 
+
 	<link title="WikiDict.cc - Free and open online dictionary" type="application/opensearchdescription+xml" rel="search" href="opensearch.xml">
 	<link rel="shortcut icon" href="images/favicon.ico">
 	<link rel="copyright" href="//creativecommons.org/licenses/by-sa/3.0/">
@@ -242,7 +249,8 @@ $languageCodes = array(
       </div>
       <div id="right">
       <form id="form" class="form-inline">
-From:
+<span id="mobilfoo">
+<label for="from">From:</label>
 <select onchange="$('form').submit()" name="from" id="from" tabindex="2">
 <?php
 foreach ($languageCodes as $key => $value)
@@ -253,7 +261,9 @@ foreach ($languageCodes as $key => $value)
   }
 ?>
 </select>
-to
+</span>
+<span id="mobilfoo">
+<label for="to">to:</label>
 <select onchange="$('form').submit()" name="to" id="to" tabindex="2">
 <?php
 foreach ($languageCodes as $key => $value)
@@ -264,6 +274,7 @@ foreach ($languageCodes as $key => $value)
   }
 ?>
 </select>
+</span>
 <br>
 	  <input type="text" id="word" value="<?=$q?>">
 	  <button>Translate</button>
