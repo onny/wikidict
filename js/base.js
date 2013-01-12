@@ -229,7 +229,7 @@ function show_result(data) {
 	    }
 	}); 
 	if ($('#result tbody tr').length == 0) { // function each quits without returning true: page exists, but not including our requested language
-	  $('#result tbody').append('<tr><td colspan="2" align="center">Sorry, the page <b><a target=new href="http://'+$('#from').val()+'.wiktionary.org/wiki/'+ $('#word').val().replace(' ','_') +'">' + $('#word').val() +'</b></a> exists, but no translation in your choosen language was given. If you want to add a translation, simply click <a target=new href=#>here</a>!</td></tr>');
+	  $('#result tbody').append('<tr><td colspan="2" align="center">Sorry, the page <b><a target=new href="http://'+$('#from').val()+'.wiktionary.org/wiki/'+ $('#word').val().replace(' ','_') +'">' + $('#word').val() +'</b></a> exists, but no translation in your chosen language was given. If you want to add a translation, simply click <a target=new href=#>here</a>!</td></tr>');
 	}
       }
     });
@@ -238,7 +238,7 @@ function show_result(data) {
 function setSearchHistory(from, to, word) {
 	var stateObj = {from: from, to: to, word: word };
 	window.document.title = "WikiDict.cc - Search: " + word;	
-	history.pushState(stateObj, "WikiDict.cc - Search: " + word, "/?from="+ from + "&to=" + to + "&q=" + word);
+	history.pushState(stateObj, "WikiDict.cc - Search: " + word, "?from="+ from + "&to=" + to + "&q=" + word); 
 }
 
 function translate(from, to, word) {
@@ -264,9 +264,9 @@ function showArticle(page) {
 	$('#result').hide();
 	
 	window.document.title = "WikiDict.cc - " + page;	
-	history.pushState({page: page}, "WikiDict.cc - " + page, page);
+	history.pushState({page: page}, "WikiDict.cc - " + page, page + ".html");
 	
-	$('section > article').load(page + ".html");
+	$('section > article').load(page);
 }
 
 
@@ -308,7 +308,7 @@ window.onpopstate = function(event) {
 	if(event.state != undefined) {
 		if(event.state['page'] != undefined) {
 			$('#result').hide();
-			$('section > article').load(event.state['page'] + ".html");
+			$('section > article').load(event.state['page']);
 		} else {
 			var from = event.state['from'];
 			var to = event.state['to'];

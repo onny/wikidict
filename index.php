@@ -1,3 +1,4 @@
+<!doctype html>
 <?php
 $languageCodes = array(
   "ab" => "Abkhazian",
@@ -186,7 +187,6 @@ $languageCodes = array(
   "zu" => "Zulu"
 );
 
-if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
 	if(isset($languageCodes[$_GET['from']])){
 		$from = $_GET['from'];
 	} else {
@@ -203,16 +203,8 @@ if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
 	}
 	if(isset($_GET['q'])){
 	  $q = $_GET['q'];
-	} else {
-	  $q = "";
-	}
-}	else {
-	  $from = "en";
-	  $to = "de";
-	  $q = "";
-}
+	} 
 ?>
-
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -229,7 +221,17 @@ if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
 	<link rel="license" href="//www.gnu.org/copyleft/fdl.html">
 	<title>WikiDict.cc - The free and open online dictionary</title>
 </head>
-<body>
+<?php 
+	echo'<body onload="';
+	if (isset($_GET['p'])) {
+		echo '$(\'#result\').hide();$(\'section > article\').load(\''.$_GET['p'].'\');';
+	} else {
+		if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
+    			echo 'translate(\''.$from.'\',\''.$to.'\',\''.$q.'\');';
+		}
+	}
+	echo '">';
+?>
 
   <div id=container>
 
@@ -290,7 +292,7 @@ foreach ($languageCodes as $key => $value)
 </div>
     <a href="javascript:showArticle('about');">About</a>
     <a href="javascript:showArticle('tools');">Tools</a>
-    <a href="javascript:showArticle('imprint')">Imprint</a>
+    <a href="javascript:showArticle('imprint');">Imprint</a>
   </footer>
 
 </div>
