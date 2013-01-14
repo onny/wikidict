@@ -1,0 +1,71 @@
+body {
+  margin: 0px;
+  padding: 0px 2px 0px 2px;
+  background-color:#eee;
+}
+input.lang {width: 50px}
+table{
+  width: 100%;
+  border: 1px solid #6d6d6d;
+  border-radius: 5px;
+  margin: 25px 0px 10px 0px;
+  background: #D8D8D8;
+}
+th{
+}
+td{
+  padding: 5px;
+  border-top: 1px solid black;
+}
+td a{
+  text-decoration: none;
+  color: black;
+}
+
+tr:hover td{
+}
+tr.columns th{
+}
+
+#mobilfoo {
+  display: block;
+}
+
+footer {
+  text-align: right;
+}
+footer a{
+  text-decoration: none;
+  color: black;
+  margin: 0px 4px 0px 4px;
+}
+
+footer a:hover {
+  color: blue;
+}
+
+#container {
+  text-align:left;
+}
+
+header {
+  /*padding-left: 25px;*/
+}
+header h1{
+  font-style: italic;
+  margin: 0px;
+  font-size: 35px;
+}
+header h1 a{
+  text-decoration: none;
+  color: black;
+}
+header h2{
+  margin-top: 0px;
+  font-size:10px;
+  color: black;
+}
+header h2 a{
+  text-decoration: none;
+  color: black;
+}
