@@ -23,3 +23,5 @@
 	- one could append the semantics in square brackets after the word in the translation table
 - sort the content of the page into directories: js, images, css
 - other possible rewrite: /[a-z] -> ?p= (letters but without following /, so that files in css/js/images-dirs won't get redirected)
+- frz tags:
+	- {{f}}, {{m}}, {{-verb-|fr}}, {{-nom-|fr}}

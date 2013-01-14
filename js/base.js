@@ -224,7 +224,7 @@ function show_result(data) {
 	$.each(content.iwlinks, function(i, el) {
 	    if (el['prefix'] == $('#to').val()) { // there's an entry with our requested langcode in the translation table
 	      var trans = el['*'];
-	      trans = trans.replace($('#to').val()+":", '').replace('_', ' ');
+	      trans = trans.replace($('#to').val()+":", '').replace('_', ' ').replace('Special:Search/','');
 	      $('#result tbody').append('<tr><td><a target=new href="http://'+$('#from').val()+'.wiktionary.org/wiki/'+ $('#word').val().replace(' ','_') +'">' + $('#word').val() +'</a></td><td><a target=new href="http://'+$('#to').val()+'.wiktionary.org/wiki/'+ trans.replace(' ','_') +'">' + trans + '</a> <font color=blue>[-]</font></td></tr>');
 	    }
 	}); 
