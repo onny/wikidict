@@ -242,7 +242,7 @@ function setSearchHistory(from, to, word) {
 }
 
 function translate(from, to, word) {
-	$('section > article').empty();
+	$('section > article').hide();
 	$('#result').show();
 	$.ajax({
 		url: 'http://' + from + '.wiktionary.org/w/api.php',
@@ -260,15 +260,22 @@ function translate(from, to, word) {
     	return false;
 }
 
+function article(page) {
+	setArticleHistory(page);
+	showArticle(page);
+}
+
 function showArticle(page) {
 	$('#result').hide();
-	
-	window.document.title = "WikiDict.cc - " + page;	
-	history.pushState({page: page}, "WikiDict.cc - " + page, page + ".html");
-	
+	$('section > article').show();
 	$('section > article').load(page);
 }
 
+function setArticleHistory(page) {
+	window.document.title = "WikiDict.cc - " + page;	
+	history.pushState({page: page}, "WikiDict.cc - " + page, page + ".html");
+
+}
 
 $(window).load(function(){
   	$('form').submit(function() {
@@ -307,8 +314,7 @@ $(window).load(function(){
 window.onpopstate = function(event) {
 	if(event.state != undefined) {
 		if(event.state['page'] != undefined) {
-			$('#result').hide();
-			$('section > article').load(event.state['page']);
+			showArticle(event.state['page']);
 		} else {
 			var from = event.state['from'];
 			var to = event.state['to'];

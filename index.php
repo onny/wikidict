@@ -54,7 +54,7 @@ if(isset($_GET['q'])){
 <?php 
 	echo'<body onload="';
 	if (isset($_GET['p'])) {
-		echo '$(\'#result\').hide();$(\'section > article\').load(\''.$_GET['p'].'\');';
+		echo 'showArticle(\''.$_GET['p'].'\');';
 	} else {
 		if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
     			echo 'translate(\''.$from.'\',\''.$to.'\',\''.$q.'\');';
@@ -124,17 +124,11 @@ foreach ($languageCodes as $key => $value)
 <a href="http://flattr.com/thing/1096017/WikiDict-cc-The-free-and-open-online-dictionary" target="_blank">
 <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
 </div>
-    <a href="javascript:showArticle('about');">About</a>
-    <a href="javascript:showArticle('tools');">Tools</a>
-    <a href="javascript:showArticle('imprint');">Imprint</a>
+    <a href="javascript:article('about');">About</a>
+    <a href="javascript:article('tools');">Tools</a>
+    <a href="javascript:article('imprint');">Imprint</a>
   </footer>
 
 </div>
 </body>
 </html>
-
-<?php
-if(isset($_GET['from']) & isset($_GET['to']) & isset($_GET['q'])){
-    echo "<script language=javascript>setSearchHistory('".$from."','".$to."','".$q."'); translate('".$from."','".$to."','".$q."');</script>";
-}
-?>
