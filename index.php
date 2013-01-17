@@ -1,7 +1,7 @@
-<!doctype html>
+<!DOCTYPE html>
 <?php
 include('language_codes.php');
-
+include('settings.php');
 if(isset($_GET['from'])) {
 	if(isset($languageCodes[$_GET['from']])){
 		$from = $_GET['from'];
@@ -28,16 +28,19 @@ if(isset($_GET['q'])){
 	$q = "";
 }
 ?>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="Free and open online dictionary, based on Wiktionary" />
+	<meta name="HandheldFriendly" content="true" />
+	<meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" />
+	<title>WikiDict.cc - The free and open online dictionary</title>
+
 	<script type='text/javascript' src='http://code.jquery.com/jquery-1.8.3.js'></script>
 	<script type='text/javascript' src='js/base.js'></script>
 	<script type='text/javascript' src="js/jquery-ui-1.9.2.custom.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.2.custom.css">
 
-	<meta name="HandheldFriendly" content="true" />
-	<meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.2.custom.css">
 	<link rel="stylesheet" media="handheld" href="css/style-mobile.css">
 	<link rel="stylesheet" media="screen and (max-width: 800px)" href="css/style-mobile.css">
 	<link rel="stylesheet" media="screen and (min-width: 801px)" href="css/styles.css">
@@ -49,7 +52,41 @@ if(isset($_GET['q'])){
 	<link rel="copyright" href="//www.gnu.org/copyleft/fdl.html">
 	<link rel="license" href="//creativecommons.org/licenses/by-sa/3.0/">
 	<link rel="license" href="//www.gnu.org/copyleft/fdl.html">
-	<title>WikiDict.cc - The free and open online dictionary</title>
+
+    <script src="src/jquery.ui.position.js" type="text/javascript"></script>
+    <script src="src/jquery.contextMenu.js" type="text/javascript"></script>
+    <link href="src/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript">
+$(function(){
+    $.contextMenu({
+        selector: '.contextmenu', 
+        callback: function(key, options) {
+            var m = "clicked: " + key;
+            window.console && console.log(m) || alert(m); 
+        },
+        items: {
+            "fold1a": {
+                "name": "Add to voc list", 
+                "items": {
+                    "fold1a-key1": {"name": "Testliste"},
+                    "fold1a-key2": {"name": "Franzoesisch"},
+                    "fold1a-key3": {"name": "Englisch"},
+		    "sep2": "---------",
+                    "fold1a-key4": {"name": "Create a new list"}
+                },
+		icon: "add"
+            }
+        }
+    });
+    
+    $('.contextmenu').on('click', function(e){
+        console.log('clicked', this);
+    })
+});
+    </script>
+
+
 </head>
 <?php 
 	echo'<body onload="';
@@ -114,7 +151,7 @@ foreach ($languageCodes as $key => $value)
       <thead>
 	<tr class="title"><th width=50%>Sprache 1</th><th>Sprache 2</th></tr>
       </thead>
-      <tbody>
+      <tbody class="contextmenu">
       </tbody>
     </table>
   </section>
