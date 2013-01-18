@@ -43,7 +43,7 @@ if(isset($_GET['q'])){
 	<link rel="stylesheet" media="screen and (min-width: 801px)" href="css/styles.css">
 	<!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="css/styles.css"><![endif]--> 
 
-	<link title="WikiDict.cc - Free and open online dictionary" type="application/opensearchdescription+xml" rel="search" href="opensearch.xml">
+	<link id="opensearch" title="WikiDict.cc <?=$from?>-<?=$to?>" type="application/opensearchdescription+xml" rel="search" href="opensearch.php?from=<?=$from?>&amp;to=<?=$to?>">
 	<link rel="shortcut icon" href="images/favicon.ico">
 	<link rel="copyright" href="//creativecommons.org/licenses/by-sa/3.0/">
 	<link rel="copyright" href="//www.gnu.org/copyleft/fdl.html">
@@ -127,6 +127,7 @@ foreach ($languageCodes as $key => $value)
     <a href="javascript:article('about');">About</a>
     <a href="javascript:article('tools');">Tools</a>
     <a href="javascript:article('imprint');">Imprint</a>
+    <a href="javascript:addOpensearch();">OpenSearch</a>
   </footer>
 
 </div>

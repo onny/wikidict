@@ -274,18 +274,30 @@ function showArticle(page) {
 function setArticleHistory(page) {
 	window.document.title = "WikiDict.cc - " + page;	
 	history.pushState({page: page}, "WikiDict.cc - " + page, page + ".html");
+}
 
+function setOpensearch(from, to) {
+	$("#opensearch").attr("title", "WikiDict.cc " + from + "-" + to);
+	$("#opensearch").attr("href", "opensearch.php?from=" + from + "&amp;to=" + to);
+}
+function addOpensearch(){
+	if (window.external && ('AddSearchProvider' in window.external)) {
+		window.external.AddSearchProvider("http://wikidict.cc/opensearch.php?from=" + $('#from').val() + "&amp;to=" + $('#to').val());
+	} else {
+		alert ("Your browser does not support the AddSearchProvider method!");
+	}
 }
 
 $(window).load(function(){
   	$('form').submit(function() {
-		$( "#word" ).autocomplete( "close" ); //auto-completion fenster schließen
 		var from = $('#from').val();
 		var to = $('#to').val();
 		var word = $('#word').val();
 
 		setSearchHistory(from, to, word);
 		translate(from, to, word);
+		setOpensearch(from, to);
+		$( "#word" ).autocomplete( "close" ); //auto-completion fenster schließen
 		return false;
 	});
   	$('#word').focus();
@@ -322,6 +334,7 @@ window.onpopstate = function(event) {
 			$('#word').val(word);
 			window.document.getElementById('from').value = from;
 			window.document.getElementById('to').value = to;
+			setOpensearch(from, to);
 			translate(from, to, word);
 		}
 	} else {
