@@ -282,7 +282,7 @@ function setOpensearch(from, to) {
 }
 function addOpensearch(){
 	if (window.external && ('AddSearchProvider' in window.external)) {
-		window.external.AddSearchProvider("http://wikidict.cc/opensearch.php?from=" + $('#from').val() + "&amp;to=" + $('#to').val());
+		window.external.AddSearchProvider("http://wikidict.cc/opensearch.php?from=" + $('#from').val() + "&to=" + $('#to').val());
 	} else {
 		alert ("Your browser does not support the AddSearchProvider method!");
 	}
