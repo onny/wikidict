@@ -39,12 +39,16 @@ if(isset($_GET['q'])){
 	<script type='text/javascript' src='http://code.jquery.com/jquery-1.8.3.js'></script>
 	<script type='text/javascript' src='js/base.js'></script>
 	<script type='text/javascript' src="js/jquery-ui-1.9.2.custom.js"></script>
+	<script type="text/javascript" src="js/jquery.ui.position.js"></script>
+	<script type="text/javascript" src="js/jquery.contextMenu.js"></script>
+
 
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.2.custom.css">
 	<link rel="stylesheet" media="handheld" href="css/style-mobile.css">
 	<link rel="stylesheet" media="screen and (max-width: 800px)" href="css/style-mobile.css">
 	<link rel="stylesheet" media="screen and (min-width: 801px)" href="css/styles.css">
 	<!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="css/styles.css"><![endif]--> 
+	<link rel="stylesheet" type="text/css" href="css/jquery.contextMenu.css"/>
 
 	<link title="WikiDict.cc - Free and open online dictionary" type="application/opensearchdescription+xml" rel="search" href="opensearch.xml">
 	<link rel="shortcut icon" href="images/favicon.ico">
@@ -53,9 +57,6 @@ if(isset($_GET['q'])){
 	<link rel="license" href="//creativecommons.org/licenses/by-sa/3.0/">
 	<link rel="license" href="//www.gnu.org/copyleft/fdl.html">
 
-    <script src="src/jquery.ui.position.js" type="text/javascript"></script>
-    <script src="src/jquery.contextMenu.js" type="text/javascript"></script>
-    <link href="src/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
 
     <script type="text/javascript">
 $(function(){

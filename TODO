@@ -4,7 +4,6 @@
 - Vokabeln speichern / Liste anlegen
 - Pronunciations http://en.wiktionary.org/wiki/sunshine
 - offer daily dict snapshots as torrent in various open dict formats (there are some dumping projects on github)
-- livesearch
 - ignore case per default
 - fade effect
 - siehe beispiel, wie form inputs validiert werden können http://api.jquery.com/submit/
@@ -24,3 +23,25 @@
 - other possible rewrite: /[a-z] -> ?p= (letters but without following /, so that files in css/js/images-dirs won't get redirected)
 - frz tags:
 	- {{f}}, {{m}}, {{-verb-|fr}}, {{-nom-|fr}}
+- resources:
+	- http://wordnetweb.princeton.edu/perl/webwn
+	- https://github.com/tkedwards/wiktionarytodict
+	- http://en.wiktionary.org/wiki/User:Matthias_Buchmeier
+	- https://github.com/djstrong/PL-Wiktionary-To-Dictionary
+	- https://github.com/newca12/dictionary-builder
+	- https://github.com/sullerandras/HTML-dictionary
+	- stardict-babylon-en-es 2.4.2-3 http://mirror.transact.net.au/sourceforge/s/project/st/stardictdata/English/stardict-babylon-Babylon_English_Spanish-2.4.2.tar.bz2
+	- stardict-en-fr 2.4.2-1 http://yeelou.com/huzheng/stardict-dic/zh_CN/stardict-woaifayu-ef-2.4.2.tar.bz2
+	- stardict-freedict-de-fr 2.4.2-2 http://www.huzheng.org/stardict-iso/stardict-dic/freedict.de/stardict-freedict-deu-fra-2.4.2.tar.bz2
+- opensearch autocompletion
+- http://webxicon.org
+- http://wiktionary-export.nataraj.su/en/about.html
+- http://code.google.com/p/jwiktionarytranslationparser/
+- http://goldendict.org/dictionaries.php (list of dictionary formats)
+- lingvo to stardict http://code.google.com/p/stardict-3/wiki/ConvertLingvo
+- babylon to stardict http://code.google.com/p/stardict-3/wiki/ConvertBabylon
+- documentation about the stardict format http://code.google.com/p/babiloo/wiki/StarDict_format
+- http://dictionarymid.sourceforge.net/dict.html
+- http://www.dicts.info/
+- http://www.dicts.info/dictionaries.php
+- http://www.stardict.org/HowToCreateDictionary
