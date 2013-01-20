@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
-	<ShortName>WikiDict.cc</ShortName>
-	<Description>WikiDict.cc - Free and open online dictionary</Description>
-	<InputEncoding>UTF-8</InputEncoding>
-	<Image height="16" width="16" type="image/x-icon">http://www.wikidict.cc/images/favicon.ico</Image>
-	<Url type="text/html" template="http://onny.project-insanity.org/wikidict/?q={searchTerms}"/>
-</OpenSearchDescription>
