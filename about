@@ -10,14 +10,19 @@ Therefore, we, <a href="http://project-insanity.org" target=new>Jonas Heinrich</
 </ul>
 <h1>ToDo</h1>
 <ul>
-  <li>mobile ui</li>
   <li>manage vocabulary lists (export them, e.g. as PDF)</li>
   <li>spell checking, suggest correction</li>
   <li>audio samples for pronounciation (if available in wiktionary)</li>
+  <li>provide stardict dictionaries via torrent (monthly snapshot from different wiktionary languages)</li>
 </ul>
 <h1>Features</h1>
 <ul>
-  <li></li>
+  <li>mobile ui</li>
+</ul>
+<h1>Credits</h1>
+<ul>
+  <li><a href=https://github.com/tkedwards target=new>tkedwards</a> for providing an example wiktionary-to-dict convertion script on <a href=https://github.com/tkedwards/wiktionarytodict target=new>github</a> (GPLv2)</li>
+  <li><a href=http://medialize.github.com/jQuery-contextMenu/ target=new>jQuery contextMenu</a></li>
 </ul>
 </div>
 
