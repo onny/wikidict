@@ -155,7 +155,7 @@ class WiktionaryDumpHandler(ContentHandler):
       fromeng.write(str((':%s:%s%s\n' % (headword, explanation, self.translationsfromeng[akey])).encode('utf-8')))
     fromeng.close()
 
-    toeng = open(('%s/%s-eng.txt' % (self.outputdir, self.langcode)).encode('utf-8'), 'w')
+    toeng = open(('%s/%s-eng.txt' % (self.outputdir,self.langcode)).encode('utf-8'), 'w', encoding="utf-8")
     toengheader = "This dictionary tranlsates %s to English. It was created by the script %s and is based on data from the Wiktionary dumps available from http://dumps.wikimedia.org/enwiktionary/latest/enwiktionary-latest-pages-articles.xml.bz2\nAll content in this dictionary is under the same license as Wiktionary content.\n\n" % (self.language, sys.argv[0])
     toeng.write(str(toengheader.encode('utf-8')))
     for akey in self.translationstoeng.keys():
@@ -172,7 +172,7 @@ class WiktionaryDumpHandler(ContentHandler):
       else:
         headword = akey
         explanation = ''
-    toeng.write(str((':%s:%s%s\n' % (headword, explanation, self.translationstoeng[akey])).encode('utf-8')))
+    toeng.write('%s\t%s %s\n' % (headword, self.translationstoeng[akey], explanation))
     toeng.close()
 
   def startElement(self, name, attrs):

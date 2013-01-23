@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <?php
-include('language_codes.php');
-include('settings.php');
+
+  include('language_codes.php');
+  include('settings.php');
+
 if(isset($_GET['from'])) {
 	if(isset($languageCodes[$_GET['from']])){
 		$from = $_GET['from'];
@@ -57,34 +59,33 @@ if(isset($_GET['q'])){
 	<link rel="license" href="//creativecommons.org/licenses/by-sa/3.0/">
 	<link rel="license" href="//www.gnu.org/copyleft/fdl.html">
 
-
     <script type="text/javascript">
-$(function(){
-    $.contextMenu({
-        selector: '.contextmenu', 
-        callback: function(key, options) {
-            var m = "clicked: " + key;
-            window.console && console.log(m) || alert(m); 
-        },
-        items: {
-            "fold1a": {
-                "name": "Add to voc list", 
-                "items": {
-                    "fold1a-key1": {"name": "Testliste"},
-                    "fold1a-key2": {"name": "Franzoesisch"},
-                    "fold1a-key3": {"name": "Englisch"},
-		    "sep2": "---------",
-                    "fold1a-key4": {"name": "Create a new list"}
-                },
-		icon: "add"
-            }
-        }
+    $(function(){
+	$.contextMenu({
+	    selector: '.contextmenu', 
+	    callback: function(key, options) {
+		var m = "clicked: " + key;
+		window.console && console.log(m) || alert(m); 
+	    },
+	    items: {
+		"fold1a": {
+		    "name": "Add to voc list", 
+		    "items": {
+			"fold1a-key1": {"name": "Testliste"},
+			"fold1a-key2": {"name": "Franzoesisch"},
+			"fold1a-key3": {"name": "Englisch"},
+			"sep2": "---------",
+			"fold1a-key4": {"name": "Create a new list"}
+		    },
+		    icon: "add"
+		}
+	    }
+	});
+	
+	$('.contextmenu').on('click', function(e){
+	    console.log('clicked', this);
+	})
     });
-    
-    $('.contextmenu').on('click', function(e){
-        console.log('clicked', this);
-    })
-});
     </script>
 
 
@@ -139,6 +140,7 @@ foreach ($languageCodes as $key => $value)
 <br>
 	  <input type="text" id="word" value="<?=$q?>">
 	  <button>Translate</button>
+    <a href="javascript:addOpensearch();">OpenSearch</a>
 
 
       </form>
@@ -162,10 +164,9 @@ foreach ($languageCodes as $key => $value)
 <a href="http://flattr.com/thing/1096017/WikiDict-cc-The-free-and-open-online-dictionary" target="_blank">
 <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
 </div>
+    <a href="javascript:article('dictionaries');">Dictionaries</a>
+    <a href="javascript:article('vocabulary');">Vocabulary</a>
     <a href="javascript:article('about');">About</a>
-    <a href="javascript:article('tools');">Tools</a>
-    <a href="javascript:article('imprint');">Imprint</a>
-    <a href="javascript:addOpensearch();">OpenSearch</a>
   </footer>
 
 </div>
