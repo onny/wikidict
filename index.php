@@ -160,10 +160,10 @@ foreach ($languageCodes as $key => $value)
   </section>
 
   <footer>
-<div style="float:left;">
-<a href="http://flattr.com/thing/1096017/WikiDict-cc-The-free-and-open-online-dictionary" target="_blank">
-<img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
-</div>
+    <div style="float:left;">
+      <a href="http://flattr.com/thing/1096017/WikiDict-cc-The-free-and-open-online-dictionary" target="_blank">
+      <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
+    </div>
     <a href="javascript:article('dictionaries');">Dictionaries</a>
     <a href="javascript:article('vocabulary');">Vocabulary</a>
     <a href="javascript:article('about');">About</a>

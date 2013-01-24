@@ -56,4 +56,13 @@
 	- http://en.wikipedia.org/wiki/Universal_Terminology_eXchange
 	- zbedic, Evolutionary Dictionary and Opendict
 	- http://aarddict.org
+	- EDICT format http://filosofie.unibuc.ro/~solcan/wt/gnu/s/stardict.html
+	- http://www.linuxlinks.com/article/20110131141441347/JaLingo.html:
+	Dictionary Specification Language (DSL)
+	Mova (used in Mueller and Transmagus dictionaries)
+	PtkDict/phpMyLingvo MySQL dumps
+	Sdictionary from Sdictionary community site
+	- LDF http://www.lingoes.net/en/dictionary/dict_format.php
+	- apertium dix format http://wiki.apertium.org/wiki/Bilingual_dictionary
+	- oxford universal press bilingual dict format http://www.oup.com/us/catalog/general/subject/Reference/BilingualDictionaries/
 http://linguae.stalikez.info/

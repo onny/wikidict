@@ -152,7 +152,7 @@ class WiktionaryDumpHandler(ContentHandler):
         headword = akey
         explanation = ''
       #print ("DEBUG about to write %s" % headword).encode('utf-8')
-      fromeng.write(str((':%s:%s%s\n' % (headword, explanation, self.translationsfromeng[akey])).encode('utf-8')))
+      fromeng.write(':%s:%s%s\n' % (headword, explanation, self.translationsfromeng[akey]))
     fromeng.close()
 
     toeng = open(('%s/%s-eng.txt' % (self.outputdir,self.langcode)).encode('utf-8'), 'w', encoding="utf-8")
@@ -172,7 +172,7 @@ class WiktionaryDumpHandler(ContentHandler):
       else:
         headword = akey
         explanation = ''
-    toeng.write('%s\t%s %s\n' % (headword, self.translationstoeng[akey], explanation))
+        toeng.write(':%s:%s%s\n' % (headword, explanation, self.translationstoeng[akey]))
     toeng.close()
 
   def startElement(self, name, attrs):
