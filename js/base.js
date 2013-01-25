@@ -268,7 +268,8 @@ function article(page) {
 function showArticle(page) {
 	$('#result').hide();
 	$('section > article').show();
-	$('section > article').load(page);
+	//$('section > article').load(page);
+	$('section > article').load('vocabulary.php');
 }
 
 function setArticleHistory(page) {

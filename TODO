@@ -66,3 +66,7 @@
 	- apertium dix format http://wiki.apertium.org/wiki/Bilingual_dictionary
 	- oxford universal press bilingual dict format http://www.oup.com/us/catalog/general/subject/Reference/BilingualDictionaries/
 http://linguae.stalikez.info/
+
+- voclists:
+	- möglichkeit name zu ändern
+	- allen php fu ordentlich absichern gegen sqlinjections etc.

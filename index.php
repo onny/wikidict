@@ -165,7 +165,7 @@ foreach ($languageCodes as $key => $value)
       <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
     </div>
     <a href="javascript:article('dictionaries');">Dictionaries</a>
-    <a href="javascript:article('vocabulary');">Vocabulary</a>
+    <a href="javascript:article('vocabulary.php');">Vocabulary</a>
     <a href="javascript:article('about');">About</a>
   </footer>
 

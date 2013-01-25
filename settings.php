@@ -5,12 +5,13 @@ $password="88HW5pjGu4n8vcw2C7F0";
 $host="mysql.pi";
 $database="wikidict";
 
-//if (isset($_COOKIE["userid"])) {
-      //$userid = $_COOKIE["userid"];
-//} else {
-      //$userid=uniqid('wikidict_');
-      //setcookie("userid",$userid,time() + (20 * 365 * 24 * 60 * 60));
-//}
+if (isset($_COOKIE["sessionid"])) {
+      $sessionid = $_COOKIE["sessionid"];
+} else {
+      $sessionid=uniqid('wikidict_');
+      setcookie("sessionid",$sessionid,time() + (20 * 365 * 24 * 60 * 60));
+}
+
 echo "<font color=grey>";
 $link = mysql_connect($host, $user, $password);
 if ($link) {
@@ -27,21 +28,23 @@ if ($link) {
 	echo "Tables do not exist, creating ...<br>";
 	$sql = "
 	  CREATE TABLE voclists (
-		  userid varchar(15),
-		  listid int,
-		  listname varchar(15))"; 
+		userid varchar(30),
+		sessionid varchar(30),
+		listid int,
+		listname varchar(30))"; 
 	$sql2 = "
 	  CREATE TABLE voclists_content (
-		  userid varchar(15),
-		  sessionid varchar(15),
-		  lang1 varchar(15),
-		  ext1 varchar(15),
-		  lang2 varchar(15),
-		  ext2 varchar(15))";
+		userid varchar(30),
+		sessionid varchar(30),
+		listid int,
+		lang1 varchar(15),
+		ext1 varchar(15),
+		lang2 varchar(15),
+		ext2 varchar(15))";
 	$sql3 = "
 	  CREATE TABLE users (
-		  userid varchar(15),
-		  sessionid varchar(15),
+		  userid varchar(30),
+		  sessionid varchar(30),
 		  pwd varchar(15),
 		  createdate varchar(15))";
 	mysql_query($sql,$link);
@@ -50,7 +53,6 @@ if ($link) {
 	echo mysql_error();
     }
   }
-  mysql_close($link);
 }else{
   echo "Unable to connect to database! ".mysql_error()."<br>";
 }

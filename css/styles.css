@@ -28,6 +28,10 @@ td a{
   color: black;
 }
 
+td.center{
+  text-align: center;
+}
+
 tr:hover td{
   background: white;
 }
@@ -103,4 +107,8 @@ header h2 a{
 }
 section{
   margin-top:20px;
+}
+
+.mediawiki table thead{
+  background-color: black;
 }
