@@ -70,3 +70,5 @@ http://linguae.stalikez.info/
 - voclists:
 	- möglichkeit name zu ändern
 	- allen php fu ordentlich absichern gegen sqlinjections etc.
+	- append new voc lists into the context menu
+http://image.bayimg.com/acc2cdf8c96ab06626a29850e9090c29e5d6f4f1.jpg

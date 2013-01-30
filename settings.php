@@ -12,7 +12,6 @@ if (isset($_COOKIE["sessionid"])) {
       setcookie("sessionid",$sessionid,time() + (20 * 365 * 24 * 60 * 60));
 }
 
-echo "<font color=grey>";
 $link = mysql_connect($host, $user, $password);
 if ($link) {
   $db_selected = mysql_select_db($database, $link);
@@ -28,15 +27,14 @@ if ($link) {
 	echo "Tables do not exist, creating ...<br>";
 	$sql = "
 	  CREATE TABLE voclists (
+		listid INT NOT NULL AUTO_INCREMENT,
+		PRIMARY KEY (listid),
 		userid varchar(30),
 		sessionid varchar(30),
-		listid int,
-		listname varchar(30))"; 
+		listname varchar(30) NOT NULL)"; 
 	$sql2 = "
 	  CREATE TABLE voclists_content (
-		userid varchar(30),
-		sessionid varchar(30),
-		listid int,
+		listid int NOT NULL,
 		lang1 varchar(15),
 		ext1 varchar(15),
 		lang2 varchar(15),
@@ -56,5 +54,22 @@ if ($link) {
 }else{
   echo "Unable to connect to database! ".mysql_error()."<br>";
 }
-echo "</font>";
+
+
+
+
+echo '<script>
+	      var items = { 
+';
+$result_voclists = mysql_query("select listid,listname from voclists where sessionid='".$sessionid."'") or die(mysql_error());
+  if (mysql_num_rows($result_voclists) > 0) {
+    while ($row = mysql_fetch_array($result_voclists)){
+	echo '"'.$row['listid'].'": {"name": "'.$row['listname'].'"},';
+    }
+  }
+echo '
+    "sep1": "---------",
+    "new": {"name": "Create a new list"}
+  };
+</script>';
 ?>

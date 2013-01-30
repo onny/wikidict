@@ -289,6 +289,32 @@ function addOpensearch(){
 	}
 }
 
+function voclist_del(listid, x) {
+  if(window.confirm("Are you sure?"))
+	$.post("process.php", { action: "voclist_del", id: listid } )
+	.success(function(data) {
+	  x.closest('tr').remove();
+	});
+}
+
+function voclist_add() {
+  var name=prompt("Please enter the list name","");
+  if (name){
+    $.post("process.php", { action: "voclist_add", name: name } )
+    .success(function(listid) {
+      $('#voclists tbody').append('<tr><td>'+name+'</td><td>0</td><td><a onclick="voclist_manage('+listid+')">Manage</a> - <a onclick="voclist_export('+listid+')">Export</a> - <a onclick="voclist_del('+listid+',$(this))">Delete</a></td></tr>');
+    });
+  }
+}
+
+function voclist_manage(listid, x) {
+  alert("Row index is: " + x.rowIndex + " and listid is: " + listid);
+}
+
+function voclist_export(listid, x) {
+  alert("Row index is: " + x.rowIndex + " and listid is: " + listid);
+}
+
 $(window).load(function(){
   	$('form').submit(function() {
 		var from = $('#from').val();

@@ -66,17 +66,12 @@ if(isset($_GET['q'])){
 	    callback: function(key, options) {
 		var m = "clicked: " + key;
 		window.console && console.log(m) || alert(m); 
+		alert(voclists.key1);
 	    },
 	    items: {
 		"fold1a": {
 		    "name": "Add to voc list", 
-		    "items": {
-			"fold1a-key1": {"name": "Testliste"},
-			"fold1a-key2": {"name": "Franzoesisch"},
-			"fold1a-key3": {"name": "Englisch"},
-			"sep2": "---------",
-			"fold1a-key4": {"name": "Create a new list"}
-		    },
+		    "items": items,
 		    icon: "add"
 		}
 	    }
