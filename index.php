@@ -44,7 +44,6 @@ if(isset($_GET['q'])){
 	<script type="text/javascript" src="js/jquery.ui.position.js"></script>
 	<script type="text/javascript" src="js/jquery.contextMenu.js"></script>
 
-
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.2.custom.css">
 	<link rel="stylesheet" media="handheld" href="css/style-mobile.css">
 	<link rel="stylesheet" media="screen and (max-width: 800px)" href="css/style-mobile.css">
@@ -62,11 +61,22 @@ if(isset($_GET['q'])){
     <script type="text/javascript">
     $(function(){
 	$.contextMenu({
-	    selector: '.contextmenu', 
+	    selector: '.contextmenu>tr>td', 
 	    callback: function(key, options) {
-		var m = "clicked: " + key;
-		window.console && console.log(m) || alert(m); 
-		alert(voclists.key1);
+		var trans = new Array();
+		trans[0] = $(this).text();
+		trans[1] = $(this).next('td').text();
+		trans[2] = $('#from').val();
+		trans[3] = $('#to').val();
+		trans = JSON.stringify(trans);
+		$.post("process.php", { action: "voclist_item_add", id: key, items: trans } )
+		.success(function(data) {
+		  // wir färben das aktuelle row ein (vllt. auch permanent)?
+		  alert('success');
+		})
+		.error(function(data) {
+		  alert('error');
+		});
 	    },
 	    items: {
 		"fold1a": {

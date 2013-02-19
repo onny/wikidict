@@ -71,4 +71,7 @@ http://linguae.stalikez.info/
 	- möglichkeit name zu ändern
 	- allen php fu ordentlich absichern gegen sqlinjections etc.
 	- append new voc lists into the context menu
+	- sprachrichtung mit aufnehmen in voclists_content
+	- kein contextmenü auf meldungen wie "eintrag nicht gefunden", bla
+	- see index.php:73
 http://image.bayimg.com/acc2cdf8c96ab06626a29850e9090c29e5d6f4f1.jpg

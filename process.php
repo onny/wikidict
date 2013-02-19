@@ -23,8 +23,9 @@ if($_POST['action'] == "voclist_del") {
 }
 
 if($_POST['action'] == "voclist_item_add") {
-  if(isset($_POST['name'])){
-    $result_voclists = mysql_query("insert into voclists_content values('2', 'test', 'n', 'Test', 'n')") or die(mysql_error());
+  if(isset($_POST['items']) and isset($_POST['id'])){
+    $trans = json_decode($_POST['items']);
+    $result_voclists = mysql_query("insert into voclists_content values(".$_POST['id'].", '".$trans[0]."', '".$trans[2]."', '".$trans[1]."', '".$trans[3]."')") or die(mysql_error());
     echo $result_voclists;
   }
 }
