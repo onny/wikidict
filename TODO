@@ -74,4 +74,8 @@ http://linguae.stalikez.info/
 	- sprachrichtung mit aufnehmen in voclists_content
 	- kein contextmenü auf meldungen wie "eintrag nicht gefunden", bla
 	- see index.php:73
+	- return codes für voclist_add(): 1: sucess, 0: error, 2: entry already exists
+	- return codes für voclist_content_add(): 1: sucess, 0: error, 2: entry already exists
+	- wenn vocliste gelöscht, dann auch dessen einträge
 http://image.bayimg.com/acc2cdf8c96ab06626a29850e9090c29e5d6f4f1.jpg
+	- contextmenu runtime creation https://github.com/medialize/jQuery-contextMenu/issues/15

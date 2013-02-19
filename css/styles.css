@@ -19,9 +19,11 @@ th{
   padding: 5px;
   text-shadow: 1px 1px 2px #0028C1;
 }
-td{
-  padding: 5px;
-  border-top: 1px solid black;
+tr>td{
+  padding: 4px;
+}
+tr.border>td{
+  border-top: 1px solid #6d6d6d;
 }
 td a{
   text-decoration: none;

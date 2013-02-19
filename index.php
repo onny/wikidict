@@ -1,6 +1,4 @@
-<!DOCTYPE html>
 <?php
-
   include('language_codes.php');
   include('settings.php');
 
@@ -30,6 +28,7 @@ if(isset($_GET['q'])){
 	$q = "";
 }
 ?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -63,6 +62,9 @@ if(isset($_GET['q'])){
 	$.contextMenu({
 	    selector: '.contextmenu>tr>td', 
 	    callback: function(key, options) {
+	      if (key == "new"){
+		voclist_add()
+	      } else {	  
 		var trans = new Array();
 		trans[0] = $(this).text();
 		trans[1] = $(this).next('td').text();
@@ -77,6 +79,7 @@ if(isset($_GET['q'])){
 		.error(function(data) {
 		  alert('error');
 		});
+	      }
 	    },
 	    items: {
 		"fold1a": {

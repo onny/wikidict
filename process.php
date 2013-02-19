@@ -29,4 +29,12 @@ if($_POST['action'] == "voclist_item_add") {
     echo $result_voclists;
   }
 }
+
+if($_POST['action'] == "export_pdf") {
+  $pdf = new FPDF();
+  $pdf->AddPage();
+  $pdf->SetFont('Arial','B',16);
+  $pdf->Cell(40,10,'Hello World!');
+  $pdf->Output();
+}
 ?>

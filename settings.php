@@ -1,5 +1,5 @@
 <?php
-
+require('lib/fpdf.php');
 $user="wikidict";
 $password="88HW5pjGu4n8vcw2C7F0";
 $host="mysql.pi";
@@ -57,9 +57,10 @@ if ($link) {
 
 
 
-
+// At this point, we generate the contents of the contextmenu
 echo '<script>
-	      var items = { 
+  var items = new Array;
+  items={ 
 ';
 $result_voclists = mysql_query("select listid,listname from voclists where sessionid='".$sessionid."'") or die(mysql_error());
   if (mysql_num_rows($result_voclists) > 0) {
@@ -71,5 +72,6 @@ echo '
     "sep1": "---------",
     "new": {"name": "Create a new list"}
   };
+  items.push({"test1": {"name": "testname"}});
 </script>';
 ?>

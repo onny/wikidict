@@ -215,6 +215,7 @@ function show_result(data) {
     $("#result tbody > tr").remove();
     $("#result thead > tr").remove();
     $("#result thead").append('<tr><th width=50%>'+ iso639[$('#from').val()] +'</th><th>'+ iso639[$('#to').val()] +'</th></tr>');
+    var count = 0;
     $.each(data, function(parse, content) {
       if (parse == 'error') { // response is an error, e.g. page does not exist
 	  $('#result tbody').append('<tr><td colspan="2" align="center">Sorry, the page <b><a target=new href="http://'+$('#from').val()+'.wiktionary.org/wiki/'+ $('#word').val().replace(' ','_') +'">' + $('#word').val() +'</b></a> does not exists in the Wiktionary. If you want to create it, start here!</td></tr>');
@@ -223,9 +224,14 @@ function show_result(data) {
       if (parse == 'parse') { // valid page, continue
 	$.each(content.iwlinks, function(i, el) {
 	    if (el['prefix'] == $('#to').val()) { // there's an entry with our requested langcode in the translation table
+	      count++;
 	      var trans = el['*'];
 	      trans = trans.replace($('#to').val()+":", '').replace('_', ' ').replace('Special:Search/','');
-	      $('#result tbody').append('<tr><td><a target=new href="http://'+$('#from').val()+'.wiktionary.org/wiki/'+ $('#word').val().replace(' ','_') +'">' + $('#word').val() +'</a></td><td><a target=new href="http://'+$('#to').val()+'.wiktionary.org/wiki/'+ trans.replace(' ','_') +'">' + trans + '</a> <font color=blue>[-]</font></td></tr>');
+	      if (count > 1){
+		$('#result tbody').append('<tr class="border"><td><a target=new href="http://'+$('#from').val()+'.wiktionary.org/wiki/'+ $('#word').val().replace(' ','_') +'">' + $('#word').val() +'</a></td><td><a target=new href="http://'+$('#to').val()+'.wiktionary.org/wiki/'+ trans.replace(' ','_') +'">' + trans + '</a> <font color=blue>[-]</font></td></tr>');
+	      }else{
+		$('#result tbody').append('<tr><td><a target=new href="http://'+$('#from').val()+'.wiktionary.org/wiki/'+ $('#word').val().replace(' ','_') +'">' + $('#word').val() +'</a></td><td><a target=new href="http://'+$('#to').val()+'.wiktionary.org/wiki/'+ trans.replace(' ','_') +'">' + trans + '</a> <font color=blue>[-]</font></td></tr>');
+	      }
 	    }
 	}); 
 	if ($('#result tbody tr').length == 0) { // function each quits without returning true: page exists, but not including our requested language
@@ -303,7 +309,10 @@ function voclist_add() {
     $.post("process.php", { action: "voclist_add", name: name } )
     .success(function(listid) {
       $('#voclists tbody').append('<tr><td>'+name+'</td><td>0</td><td><a onclick="voclist_manage('+listid+')">Manage</a> - <a onclick="voclist_export('+listid+')">Export</a> - <a onclick="voclist_del('+listid+',$(this))">Delete</a></td></tr>');
+      //items.unshift('"'+listid+'": {"name": "'+name+"},');
+      alert(JSON.stringify(items));
     });
+
   }
 }
 
@@ -312,8 +321,12 @@ function voclist_manage(listid, x) {
 }
 
 function voclist_export(listid, x) {
-  alert("Row index is: " + x.rowIndex + " and listid is: " + listid);
+    $.post("process.php", { action: "export_pdf", id: listid } )
+    .success(function(data) {
+      alert("success");
+    });
 }
+
 
 $(window).load(function(){
   	$('form').submit(function() {
