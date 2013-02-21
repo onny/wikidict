@@ -1,6 +1,25 @@
 <?php
-  include('language_codes.php');
-  include('settings.php');
+
+include('language_codes.php');
+include('settings.php');
+
+// At this point, we generate the contents of the contextmenu
+echo '<script>
+  var items = new Array;
+  items={ 
+';
+$result_voclists = mysql_query("select listid,listname from voclists where sessionid='".$sessionid."'") or die(mysql_error());
+  if (mysql_num_rows($result_voclists) > 0) {
+    while ($row = mysql_fetch_array($result_voclists)){
+	echo '"'.$row['listid'].'": {"name": "'.$row['listname'].'"},';
+    }
+  }
+echo '
+    "sep1": "---------",
+    "new": {"name": "Create a new list"}
+  };
+  items.push({"test1": {"name": "testname"}});
+</script>';
 
 if(isset($_GET['from'])) {
 	if(isset($languageCodes[$_GET['from']])){
@@ -99,6 +118,7 @@ if(isset($_GET['q'])){
 
 </head>
 <?php 
+
 	echo'<body onload="';
 	if (isset($_GET['p'])) {
 		echo 'showArticle(\''.$_GET['p'].'\');';

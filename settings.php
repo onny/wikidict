@@ -1,5 +1,4 @@
 <?php
-require('lib/fpdf.php');
 $user="wikidict";
 $password="88HW5pjGu4n8vcw2C7F0";
 $host="mysql.pi";
@@ -55,23 +54,4 @@ if ($link) {
   echo "Unable to connect to database! ".mysql_error()."<br>";
 }
 
-
-
-// At this point, we generate the contents of the contextmenu
-echo '<script>
-  var items = new Array;
-  items={ 
-';
-$result_voclists = mysql_query("select listid,listname from voclists where sessionid='".$sessionid."'") or die(mysql_error());
-  if (mysql_num_rows($result_voclists) > 0) {
-    while ($row = mysql_fetch_array($result_voclists)){
-	echo '"'.$row['listid'].'": {"name": "'.$row['listname'].'"},';
-    }
-  }
-echo '
-    "sep1": "---------",
-    "new": {"name": "Create a new list"}
-  };
-  items.push({"test1": {"name": "testname"}});
-</script>';
 ?>

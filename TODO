@@ -79,3 +79,5 @@ http://linguae.stalikez.info/
 	- wenn vocliste gelöscht, dann auch dessen einträge
 http://image.bayimg.com/acc2cdf8c96ab06626a29850e9090c29e5d6f4f1.jpg
 	- contextmenu runtime creation https://github.com/medialize/jQuery-contextMenu/issues/15
+	- get voclist_content, immer noch abfrage zu sessionid
+	- beim generieren der liste darauf achten, dass die sprachrichtung in der tabelle einheitlich bleibt
