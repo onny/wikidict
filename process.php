@@ -19,6 +19,12 @@ if($_POST['action'] == "voclist_del") {
     } else {
       echo "true";
     }
+    if(!mysql_query("delete from voclists_content where listid='".$_POST['id']."'")){
+      echo "false";
+      die(mysql_error());
+    } else {
+      echo "true";
+    }
   }
 }
 
