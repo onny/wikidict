@@ -211,31 +211,28 @@ function get_attributes(trans) {
 	return wortart;
 }
 
-function show_result(data) {
-    $("#result tbody > tr").remove();
-    $("#result thead > tr").remove();
-    $("#result thead").append('<tr><th width=50%>'+ iso639[$('#from').val()] +'</th><th>'+ iso639[$('#to').val()] +'</th></tr>');
+function show_result(data, from, to, word) {
     var count = 0;
     $.each(data, function(parse, content) {
       if (parse == 'error') { // response is an error, e.g. page does not exist
-	  $('#result tbody').append('<tr><td colspan="2" align="center">Sorry, the page <b><a target=new href="http://'+$('#from').val()+'.wiktionary.org/wiki/'+ $('#word').val().replace(' ','_') +'">' + $('#word').val() +'</b></a> does not exists in the Wiktionary. If you want to create it, start here!</td></tr>');
+	  $('#result tbody').append('<tr><td colspan="2" align="center">Sorry, the page <b><a target=new href="http://'+from+'.wiktionary.org/wiki/'+word.replace(' ','_') +'">' +word+'</b></a> does not exists in the Wiktionary. If you want to create it, start here!</td></tr>');
 	  return false; // break
       }
       if (parse == 'parse') { // valid page, continue
 	$.each(content.iwlinks, function(i, el) {
-	    if (el['prefix'] == $('#to').val()) { // there's an entry with our requested langcode in the translation table
+	    if (el['prefix'] == to) { // there's an entry with our requested langcode in the translation table
 	      count++;
 	      var trans = el['*'];
-	      trans = trans.replace($('#to').val()+":", '').replace('_', ' ').replace('Special:Search/','');
+	      trans = trans.replace(to+":", '').replace('_', ' ').replace('Special:Search/','');
 	      if (count > 1){
-		$('#result tbody').append('<tr class="border"><td><a target=new href="http://'+$('#from').val()+'.wiktionary.org/wiki/'+ $('#word').val().replace(' ','_') +'">' + $('#word').val() +'</a></td><td><a target=new href="http://'+$('#to').val()+'.wiktionary.org/wiki/'+ trans.replace(' ','_') +'">' + trans + '</a> <font color=blue>[-]</font></td></tr>');
+		$('#result tbody').append('<tr class="border"><td class="bold"><a target=new href="http://'+from+'.wiktionary.org/wiki/'+word.replace(' ','_') +'">' + word +'</a></td><td><a target=new href="http://'+to+'.wiktionary.org/wiki/'+ trans.replace(' ','_') +'">' + trans + '</a> <font color=blue>[-]</font></td></tr>');
 	      }else{
-		$('#result tbody').append('<tr><td><a target=new href="http://'+$('#from').val()+'.wiktionary.org/wiki/'+ $('#word').val().replace(' ','_') +'">' + $('#word').val() +'</a></td><td><a target=new href="http://'+$('#to').val()+'.wiktionary.org/wiki/'+ trans.replace(' ','_') +'">' + trans + '</a> <font color=blue>[-]</font></td></tr>');
+		$('#result tbody').append('<tr><td class="bold"><a target=new href="http://'+from+'.wiktionary.org/wiki/'+ word.replace(' ','_') +'">' +word+'</a></td><td><a target=new href="http://'+to+'.wiktionary.org/wiki/'+ trans.replace(' ','_') +'">' + trans + '</a> <font color=blue>[-]</font></td></tr>');
 	      }
 	    }
 	}); 
 	if ($('#result tbody tr').length == 0) { // function each quits without returning true: page exists, but not including our requested language
-	  $('#result tbody').append('<tr><td colspan="2" align="center">Sorry, the page <b><a target=new href="http://'+$('#from').val()+'.wiktionary.org/wiki/'+ $('#word').val().replace(' ','_') +'">' + $('#word').val() +'</b></a> exists, but no translation in your chosen language was given. If you want to add a translation, simply click <a target=new href=#>here</a>!</td></tr>');
+	  $('#result tbody').append('<tr><td colspan="2" align="center">Sorry, the page <b><a target=new href="http://'+from+'.wiktionary.org/wiki/'+word.replace(' ','_') +'">' +word+'</b></a> exists, but no translation in your chosen language was given. If you want to add a translation, simply click <a target=new href=#>here</a>!</td></tr>');
 	}
       }
     });
@@ -247,9 +244,33 @@ function setSearchHistory(from, to, word) {
 	history.pushState(stateObj, "WikiDict.cc - Search: " + word, "?from="+ from + "&to=" + to + "&q=" + word); 
 }
 
+function suggest(lang, to, word) {
+	$.ajax({
+	    url: 'http://' + lang + '.wiktionary.org/w/api.php',
+		type: "GET",
+		data: {
+			action: 'query',
+			list: 'search',
+			srsearch: word,
+	  		srinfo: 'suggestion',
+			format: 'json'
+		},
+		dataType: 'jsonp'
+	}).always( function(data) { 
+		var result = data.query.searchinfo.suggestion;
+		if (result) {
+			translate(lang, to, result);
+		}
+	});
+}
+
 function translate(from, to, word) {
 	$('section > article').hide();
 	$('#result').show();
+
+	suggest(from, to, word);
+	//suggest(to, from, word);
+
 	$.ajax({
 		url: 'http://' + from + '.wiktionary.org/w/api.php',
 		data: {
@@ -261,8 +282,11 @@ function translate(from, to, word) {
 			page: word
 		},
 		dataType: 'jsonp',
-	        success: show_result
+	        success: function show_resultt(data){
+			show_result(data, from, to, word);
+		}
     	});
+
     	return false;
 }
 
@@ -327,15 +351,56 @@ function voclist_export(listid, x) {
     });
 }
 
+$(function(){
+    $.contextMenu({
+	selector: '.contextmenu>tr>td', 
+	callback: function(key, options) {
+	  if (key == "new"){
+	    voclist_add()
+	  } else {	  
+	    var trans = new Array();
+	    trans[0] = $(this).text();
+	    trans[1] = $(this).next('td').text();
+	    trans[2] = $('#from').val();
+	    trans[3] = $('#to').val();
+	    trans = JSON.stringify(trans);
+	    $.post("process.php", { action: "voclist_item_add", id: key, items: trans } )
+	    .success(function(data) {
+	      // wir färben das aktuelle row ein (vllt. auch permanent)?
+	      alert('success');
+	    })
+	    .error(function(data) {
+	      alert('error');
+	    });
+	  }
+	},
+	items: {
+	    "fold1a": {
+		"name": "Add to voc list", 
+		"items": items,
+		icon: "add"
+	    }
+	}
+    });
+    
+    $('.contextmenu').on('click', function(e){
+	console.log('clicked', this);
+    })
+});
 
 $(window).load(function(){
   	$('form').submit(function() {
 		var from = $('#from').val();
 		var to = $('#to').val();
 		var word = $('#word').val();
+		$("#result thead tr > th:first").string('test'); // iso639[from]);
 
+		$("#result tbody > tr").remove();
 		setSearchHistory(from, to, word);
+
 		translate(from, to, word);
+		translate(to, from, word);
+
 		setOpensearch(from, to);
 		$( "#word" ).autocomplete( "close" ); //auto-completion fenster schließen
 		return false;

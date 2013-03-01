@@ -37,6 +37,11 @@ td.center{
 tr:hover td{
   background: white;
 }
+
+td.bold {
+  font-weight: bold;
+}
+
 tr.columns th{
   background: -moz-linear-gradient(top, #c3c3c3, #a5a5a5);
   background: -webkit-gradient(linear, left top, left bottom, from(#c3c3c3), to(#a5a5a5));
